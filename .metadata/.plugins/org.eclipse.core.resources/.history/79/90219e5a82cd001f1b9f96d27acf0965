@@ -1,0 +1,48 @@
+package com.kmove.app.User.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import com.kmove.app.User.service.UserService;
+
+@Controller
+public class UserController {
+	
+	@Autowired
+	private UserService userservice;
+	
+	 /*
+     * 메인 페이지로 이동
+     * @return 메인 페이지 뷰 이름
+     */
+    @RequestMapping(value = "/")
+    public String main() {
+        return "index";
+    }
+    
+    /**
+     * 회원 가입/수정 폼을 보여주는 메서드
+     * 로그인된 사용자의 경우 기존 정보를 폼에 표시
+     * @param session HTTP 세션
+     * @param model Spring Model 객체
+     * @return 회원 폼 뷰 이름
+     */
+    @RequestMapping(value = "/user/form")
+    public String userForm(HttpSession session, Model model) throws Exception {
+        System.out.println("UserController userForm() 함수 시작--------------------------------");
+        String uidx = (String)session.getAttribute("uidx");
+        System.out.println(uidx);
+        
+        UserVO uvo = null;
+        if(uidx != null) { // 로그인된 사용자인 경우
+            uvo = userservice.userSelectOne(uidx);
+            System.out.println(uvo);
+        }
+        model.addAttribute("uvo", uvo);
+        System.out.println("UserController userForm() 함수 끝--------------------------------");
+        return "user/form";
+    }
+	
+   
+    
+}

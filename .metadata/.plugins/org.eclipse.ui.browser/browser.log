@@ -1,0 +1,45 @@
+
+1월 09, 2025 10:09:13.561 NEW SESSION
+1월 09, 2025 10:09:13.561 [7028:20476:0109/100913.558:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 09, 2025 10:09:13.995 Created TensorFlow Lite XNNPACK delegate for CPU.
+
+1월 09, 2025 10:10:26.471 NEW SESSION
+1월 09, 2025 10:10:26.471 Created TensorFlow Lite XNNPACK delegate for CPU.
+1월 09, 2025 10:10:26.483 [21284:1648:0109/101026.483:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 09, 2025 10:10:52.487 [21284:1648:0109/101052.486:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 09, 2025 10:11:50.410 [21284:1648:0109/101150.409:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+
+1월 09, 2025 11:40:36.164 NEW SESSION
+1월 09, 2025 11:40:36.164 Created TensorFlow Lite XNNPACK delegate for CPU.
+1월 09, 2025 11:40:36.169 [25504:22016:0109/114036.169:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 09, 2025 11:41:05.445 [25504:22016:0109/114105.445:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 09, 2025 11:42:04.277 [25504:22016:0109/114204.276:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 09, 2025 11:43:30.903 [25504:22016:0109/114330.902:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 09, 2025 11:46:14.864 [25504:22016:0109/114614.863:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 09, 2025 11:54:07.921 [25504:22016:0109/115407.920:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 09, 2025 12:08:30.478 [25504:21188:0109/120830.477:ERROR:device_event_log_impl.cc(201)] [12:08:30.477] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: �슂�냼媛� �뾾�뒿�땲�떎. (0x490)
+1월 09, 2025 12:08:36.684 [25504:21188:0109/120836.684:ERROR:device_event_log_impl.cc(201)] [12:08:36.683] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: �슂�냼媛� �뾾�뒿�땲�떎. (0x490)
+
+1월 10, 2025 10:15:04.26 NEW SESSION
+1월 10, 2025 10:15:04.26 [30220:33804:0110/101504.003:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 10, 2025 10:15:04.84 Created TensorFlow Lite XNNPACK delegate for CPU.
+1월 10, 2025 10:15:24.268 [30220:33804:0110/101524.268:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 10, 2025 10:16:13.842 [30220:33804:0110/101613.842:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 10, 2025 10:18:05.457 [30220:33804:0110/101805.456:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 10, 2025 10:19:53.977 [30220:16516:0110/101953.976:ERROR:device_event_log_impl.cc(201)] [10:19:53.977] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: �슂�냼媛� �뾾�뒿�땲�떎. (0x490)
+1월 10, 2025 10:20:02.504 [30220:16516:0110/102002.503:ERROR:device_event_log_impl.cc(201)] [10:20:02.503] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: �슂�냼媛� �뾾�뒿�땲�떎. (0x490)
+1월 10, 2025 10:21:04.556 [30220:33804:0110/102104.556:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 10, 2025 10:25:20.159 [30220:16516:0110/102520.159:ERROR:CONSOLE(0)] "[Report Only] Refused to frame 'https://ogs.google.com/' because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'self'".
+1월 10, 2025 10:25:20.160 ", source:  (0)
+1월 10, 2025 10:25:20.160 [30220:16516:0110/102520.159:ERROR:CONSOLE(0)] "[Report Only] Refused to frame 'https://ogs.google.com/' because an ancestor violates the following Content Security Policy directive: "frame-ancestors 'self'".
+1월 10, 2025 10:25:20.161 ", source:  (0)
+1월 10, 2025 10:27:53.748 [30220:33804:0110/102753.748:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+1월 10, 2025 11:53:40.146 [0110/115340.141:ERROR:filesystem_win.cc(128)] GetFileAttributes C:\Users\MSI\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\8d14ec81-049f-4567-9e54-b05d0c49e634: 吏��젙�맂 �뙆�씪�쓣 李얠쓣 �닔 �뾾�뒿�땲�떎. (0x2)
+1월 10, 2025 11:53:40.147 [0110/115340.145:ERROR:filesystem_win.cc(128)] GetFileAttributes C:\Users\MSI\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\8d14ec81-049f-4567-9e54-b05d0c49e634: 吏��젙�맂 �뙆�씪�쓣 李얠쓣 �닔 �뾾�뒿�땲�떎. (0x2)
+1월 10, 2025 11:55:52.523 [30220:33804:0110/115552.522:ERROR:connection_factory_impl.cc(483)] ConnectionHandler failed with net error: -2
+1월 10, 2025 11:55:54.619 [30220:33804:0110/115554.618:ERROR:connection_factory_impl.cc(434)] Failed to connect to MCS endpoint with error -105
+1월 10, 2025 12:20:07.188 [30220:16516:0110/122007.187:ERROR:device_event_log_impl.cc(201)] [12:20:07.187] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: �슂�냼媛� �뾾�뒿�땲�떎. (0x490)
+1월 10, 2025 12:20:14.326 [30220:16516:0110/122014.326:ERROR:device_event_log_impl.cc(201)] [12:20:13.971] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: �슂�냼媛� �뾾�뒿�땲�떎. (0x490)
+1월 10, 2025 14:35:53.514 [30220:16516:0110/143553.514:ERROR:device_event_log_impl.cc(201)] [14:35:53.513] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: �슂�냼媛� �뾾�뒿�땲�떎. (0x490)
+1월 10, 2025 14:36:03.686 [30220:16516:0110/143603.686:ERROR:device_event_log_impl.cc(201)] [14:36:03.685] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: �슂�냼媛� �뾾�뒿�땲�떎. (0x490)
+1월 10, 2025 14:48:18.644 [30220:16516:0110/144818.644:ERROR:interface_endpoint_client.cc(725)] Message 0 rejected by interface blink.mojom.WidgetHost

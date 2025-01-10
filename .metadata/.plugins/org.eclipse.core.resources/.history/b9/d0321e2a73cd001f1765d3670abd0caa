@@ -1,0 +1,88 @@
+package com.kmove.app.User.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.kmove.app.User.vo.SearchCondition;
+import com.kmove.app.User.vo.UserVO;
+
+@Repository
+public class UserDAOImpl implements UserDAO {
+	
+	@Autowired
+	private SqlSession session;
+	private String namespace ="com.kmove.app.mapper.UserMapper." ;
+	
+	@Override
+	public int insertUser(UserVO uvo) throws Exception {
+		System.out.println("UserDAO insertUser Start----------------------------------------------------");
+		System.out.println("UserDAO uvo >>" + uvo);
+		int res = session.insert(namespace + "userJoin", uvo);  
+		System.out.println("UserDAO res >>" + res);
+		System.out.println("UserDAO insertUser End------------------------------------------------------");
+		
+		return res;
+	}
+	
+	@Override
+	public List<UserVO> userSelectAll(SearchCondition sc) throws Exception {
+		System.out.println("UserDAO userSelectAll Start----------------------------------------------------");
+		System.out.println("UserDAO sc >>" + sc);
+	    List<UserVO> uList = session.selectList(namespace + "userSelectAll",sc);
+	    System.out.println("UserDAO uList >>" + uList);
+		System.out.println("UserDAO userSelectAll End----------------------------------------------------");
+
+		return uList;
+	}
+	
+	@Override
+	public UserVO selectOne(String uidx) throws Exception {		
+		System.out.println("UserDAO selectOne Start----------------------------------------------------");
+		System.out.println("UserDAO uidx >>" + uidx);
+		UserVO uvo = session.selectOne(namespace + "selectOne", uidx);  
+	    System.out.println("UserDAO res >>" + uvo);
+		System.out.println("UserDAO selectOne End----------------------------------------------------");
+
+		return uvo;
+	}
+	
+	@Override
+	public int updateUser(UserVO uvo) throws Exception {
+		System.out.println("UserDAO updateUser Start----------------------------------------------------");
+		System.out.println("UserDAO uvo >>" + uvo);
+		int res = session.update(namespace + "updateUser", uvo);  
+		System.out.println("UserDAO res >>" + res);
+		System.out.println("UserDAO updateUser End----------------------------------------------------");
+
+		return res;
+	}
+	@Override
+	public int deleteUser(String uidx) throws Exception {
+		System.out.println("UserDAO updateUser Start----------------------------------------------------");
+		System.out.println("UserDAO uidx >>" + uidx);
+		int res = session.update(namespace + "deleteUser", uidx);
+		System.out.println("UserDAO res >>" + res);
+		System.out.println("UserDAO updateUser End----------------------------------------------------");
+
+		return res;
+	}
+	@Override
+	public int userCount(SearchCondition sc) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int idCheck(String uid) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public String userUidx(String uid) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

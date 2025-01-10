@@ -1,0 +1,66 @@
+package com.kmove.app.User.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.kmove.app.User.vo.SearchCondition;
+import com.kmove.app.User.vo.UserVO;
+
+@Repository
+public class UserDAOImpl implements UserDAO {
+	
+	@Autowired
+	private SqlSession session;
+	private String namespace ="com.kmove.app.mapper.UserMapper." ;
+	
+	@Override
+	public int insertUser(UserVO uvo) throws Exception {
+		System.out.println("UserDAO insertUser Start----------------------------------------------------");
+		System.out.println("UserDAO uvo >>" +uvo);
+		int res = session.insert(namespace + "userJoin", uvo);  
+		System.out.println("UserDAO res >>" + res);
+		System.out.println("UserDAO insertUser End------------------------------------------------------");
+		
+		return res;
+	}
+	
+	@Override
+	public List<UserVO> userSelectAll(SearchCondition sc) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public UserVO selectOne(String uidx) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int updateUser(UserVO uvo) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int deleteUser(String uidx) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int userCount(SearchCondition sc) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int idCheck(String uid) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public String userUidx(String uid) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

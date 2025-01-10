@@ -1,0 +1,53 @@
+/**
+ * 
+ */
+
+console.log("dd");
+
+function postSearch(){ //카카오api 주소찾기
+	new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+          
+            console.log(data.zonecode);
+            document.getElementById('upost').value = data.zonecode;
+            document.getElementById('uaddress').value = data.roadAddress;
+        }
+    }).open();
+ } // END OF POSTSEARCH
+ 
+ 
+function idCheck() { // 아이디 중복 확인
+    let uid = $("#uid").val(); 
+    console.log("111");
+    console.log(uid);
+
+    $.ajax({
+        url: '/user/id', // 요청 URL
+        data: { uid: uid }, // 데이터 객체 전달
+        type: 'POST', 
+        success: function (result) {
+            if (result == 0) { 
+                alert("사용 가능한 아이디입니다.");
+            } else { 
+                alert("중복된 아이디입니다.");
+                uid = '';
+            }
+        },
+        error: function (error) {
+            console.error(error);
+            alert("서버 요청 중 에러가 발생했습니다.");
+        }
+    }); // End Of Ajax
+} // End Of idCheck 함수
+
+
+function userSubmit(){
+
+
+	document.userForm.method = 'POST';
+	document.userForm.action = '/join';
+	document.userForm.submit();
+}
+
+

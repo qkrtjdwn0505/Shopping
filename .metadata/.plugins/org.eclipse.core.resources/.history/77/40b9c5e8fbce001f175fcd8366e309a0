@@ -1,0 +1,162 @@
+package com.kmove.app.User.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import javax.servlet.http.HttpSession;
+import com.kmove.app.Common.Chaebun;
+import com.kmove.app.User.service.UserService;
+import com.kmove.app.User.vo.UserVO;
+
+/**
+ * 사용자 관련 요청을 처리하는 컨트롤러
+ * 회원가입, 정보수정, ID 중복체크, 회원탈퇴 등의 기능을 담당
+ */
+@Controller
+public class UserController {
+    
+    // UserService 인터페이스를 자동 주입
+    @Autowired
+    private UserService userservice;
+    
+    /**
+     * 메인 페이지 요청을 처리
+     * URL: "/"
+     * @return index 뷰 페이지로 이동
+     */
+    @RequestMapping(value = "/")
+    public String main() {
+        return "index";
+    }
+    
+    /**
+     * 회원 가입/수정 폼 페이지 요청을 처리
+     * URL: "/form"
+     * - 비로그인 상태: 빈 회원가입 폼 표시
+     * - 로그인 상태: 현재 사용자 정보를 폼에 표시
+     * 
+     * @param session 사용자 세션 정보
+     * @param model 뷰에 전달할 데이터를 담는 객체
+     * @return 회원 폼 뷰 페이지
+     */
+    @RequestMapping(value = "/form")
+    public String insertUser(HttpSession session, Model model) throws Exception {
+        System.out.println("UserController userform Start----------------------------------------------------");
+        
+        // 세션에서 사용자 고유번호(uidx) 조회
+        String uidx = (String)session.getAttribute("uidx");
+        System.out.println(uidx);
+        
+        // uidx가 있으면(로그인 상태) 해당 사용자 정보 조회
+        UserVO uvo = null;
+        if(uidx != null) {
+            uvo = userservice.selectOne(uidx);
+            System.out.println(uvo);
+        }
+        
+        // 조회된 사용자 정보를 모델에 저장하여 뷰로 전달
+        model.addAttribute("uvo", uvo);
+        
+        System.out.println("UserController userform End----------------------------------------------------");
+        return "/user/form";
+    }
+    
+    /**
+     * 회원 가입 요청을 처리
+     * URL: "/user/join"
+     * 방식: POST
+     * 
+     * @param uvo 사용자가 입력한 회원정보
+     * @param rattr 리다이렉트 시 데이터를 전달하기 위한 객체
+     * @return 메인 페이지로 리다이렉트
+     */
+    @RequestMapping(value = "/user/join", method = RequestMethod.POST)
+    public String userJoin(@ModelAttribute UserVO uvo, RedirectAttributes rattr) throws Exception {
+        System.out.println("UserController userJoin() Start----------------------------------------------------");
+        System.out.println("uvo >> " + uvo);
+        
+        // 새로운 회원번호 생성을 위해 현재 최대 번호 조회
+        String maxno = userservice.maxno();
+        System.out.println("UserController usermaxno() >> " + maxno );
+        
+        // 새로운 회원번호 생성 및 설정
+        String uidx = Chaebun.getUno(maxno);
+        System.out.println("uidx >> " + uidx);
+        uvo.setUidx(uidx);
+        
+        // 회원 정보 저장
+        int res = userservice.insertUser(uvo);
+        System.out.println("res >> " + res);        
+        System.out.println("UserController userJoin() End----------------------------------------------------");
+        
+        // 저장 성공 시 성공 메시지와 함께 메인 페이지로 리다이렉트
+        if(res ==1) {
+            String msg = "JOIN_OK";
+            rattr.addFlashAttribute("msg",msg); 
+            return "redirect:/"; 
+        }
+        return "";
+    }
+
+    /**
+     * 아이디 중복 체크 요청을 처리
+     * URL: "/user/id"
+     * 방식: POST
+     * 
+     * @param uid 중복 체크할 사용자 ID
+     * @return 중복 여부 (중복이면 1, 아니면 0)
+     */
+    @PostMapping(value="/user/id")
+    @ResponseBody
+    public String idCheck(@RequestParam String uid) throws Exception {
+        System.out.println("UserController idCheck() Start----------------------------------------------------");
+        System.out.println("UserController idCheck() uid" + uid);
+        int res = userservice.idCheck(uid);
+        System.out.println("UserController idCheck() res>> " + res);
+        System.out.println("UserController idCheck() End----------------------------------------------------");
+        return String.valueOf(res);
+    }
+    
+    /**
+     * 회원 탈퇴 요청을 처리
+     * URL: "/user/delete"
+     * 방식: POST
+     * 
+     * @param session 현재 사용자 세션
+     * @param rattr 리다이렉트 속성 (탈퇴 완료 메시지 전달)
+     * @return 메인 페이지로 리다이렉트
+     * @throws Exception 
+     */
+    @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
+    public String deleteUser(HttpSession session, RedirectAttributes rattr) {
+        System.out.println("UserController deleteUser Start---------------------------------------------");
+
+        // 세션에서 사용자 고유번호(uidx) 가져오기
+        String uidx = (String) session.getAttribute("uidx");
+
+        if (uidx != null) {
+            try {
+                // 논리적 탈퇴 처리
+                int result = userservice.deleteUser(uidx);
+
+                if (result > 0) {
+                    session.invalidate();  // 탈퇴 성공 시 세션 종료
+                    rattr.addFlashAttribute("message", "회원 탈퇴가 완료되었습니다.");
+                } else {
+                    rattr.addFlashAttribute("message", "회원 탈퇴에 실패하였습니다.");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                rattr.addFlashAttribute("message", "오류가 발생했습니다. 관리자에게 문의하세요.");
+            }
+        } else {
+            rattr.addFlashAttribute("message", "로그인이 필요합니다.");
+        }
+
+        System.out.println("UserController deleteUser End-----------------------------------------------");
+        return "redirect:/";
+    }
+}

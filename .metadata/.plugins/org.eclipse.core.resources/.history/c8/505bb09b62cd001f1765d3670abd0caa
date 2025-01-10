@@ -1,0 +1,14 @@
+package com.kmove.app.User.dao;
+
+import java.util.List;
+
+import com.kmove.app.User.vo.UserVO;
+
+public interface UserDAO {
+	public int insertUser(UserVO uvo) throws Exception; //회원가입								
+	public UserVO selectUser(String uidx) throws Exception; //회원 선택
+	public List<UserVO> selectAllUser(SearchCondition sc) throws Exception
+	public int deleteUser(String uidx)throws Exception;
+	public int updateUser(UserVO uvo)throws Exception; 
+	public int idCheak(String uid) throws Exception;
+}

@@ -1,0 +1,5 @@
+package com.kmove.app.Product.vo;
+
+public class ProductVO {
+
+}

@@ -1,0 +1,35 @@
+<mapper namespace="com.kmove.app.mapper.UserMapper">
+<!--  채번  -->
+<select id="maxno" resultType="java.lang.Integer"> SELECT IFNULL(MAX(SUBSTR(UIDX, 10, 3)), 0) + 1 FROM USER WHERE SUBSTR(UIDX, 2, 8) = DATE_FORMAT(NOW(), '%Y%m%d') </select>
+<!--  입력  -->
+<insert id="userJoin" parameterType="UserVO"> INSERT INTO USER VALUES ( #{uidx},#{uname},#{uid},#{upw},#{uphone},#{ubirth},#{upost}, #{uaddr1},#{uaddr2},#{uemail},0,'Y',NOW(),NOW() ) </insert>
+<!--  회원 상세조회   -->
+<select id="userSelectOne" resultType="UserVO"> SELECT * FROM USER WHERE UIDX = #{uidx} </select>
+<!--  업데이트  -->
+<update id="userUpdate" parameterType="UserVO"> UPDATE USER SET UNAME = #{uname}, UPHONE = #{uphone}, UBIRTH = #{ubirth}, UPOST = #{upost}, UADDR1 = #{uaddr1}, UADDR2 = #{uaddr2}, UEMAIL = #{uemail}, UUPDATEDATE = NOW() WHERE UIDX = #{uidx} </update>
+<!--  삭제  -->
+<update id="userDelete" parameterType="String"> UPDATE USER SET UDELETEYN ='N' UUPDATEDATE = NOW() </update>
+<!--  전체 조회   -->
+<select id="userSelectAll" resultType="UserVO" parameterType="SearchCondition">
+SELECT * FROM USER WHERE UDELETEYN = 'Y'
+<include refid="SearchCondition"/>
+ORDER BY UIDX DESC LIMIT #{offset},#{pageSize}
+</select>
+<!--  로그인 체크  -->
+<select id="loginCheck" resultType="UserVO"> SELECT * FROM USER WHERE UDELETEYN = 'Y' AND UID = #{uid}; </select>
+<!--  페이징 회원 수 가져오기  -->
+<select id="userCount" resultType="int" parameterType="SearchCondition">
+SELECT COUNT(*) FROM USER WHERE UDELETEYN = 'Y'
+<include refid="SearchCondition"/>
+</select>
+<!--  SearchCondition   -->
+<sql id="SearchCondition">
+<choose>
+<when test="option == "N""> AND UNAME LIKE CONCAT('%', #{keyword}, '%') </when>
+<when test="option == "I""> AND UID LIKE CONCAT('%', #{keyword}, '%') </when>
+</choose>
+</sql>
+<!--  id= "idCheak"  -->
+<!--  아이디 중복 확인  -->
+<select id="idCheak" resultType="int" parameterType="String"> SELECT COUNT(*) FROM USER WHERE UID = #{uid} </select>
+</mapper>

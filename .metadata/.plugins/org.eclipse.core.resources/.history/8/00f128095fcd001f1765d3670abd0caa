@@ -1,0 +1,5 @@
+package com.kmove.app.Comment.vo;
+
+public class CommentVO {
+
+}

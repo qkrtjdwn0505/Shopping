@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+C:\javaPro\100.project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\626255032.index
+\shopping\src\main\java
+C:\javaPro\100.project\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1756694838.index
+\shopping\src\main\java

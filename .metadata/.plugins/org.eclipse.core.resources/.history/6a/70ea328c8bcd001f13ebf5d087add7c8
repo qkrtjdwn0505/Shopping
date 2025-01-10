@@ -1,0 +1,83 @@
+<mapper namespace="com.kmove.app.User.dao.UserDAO">
+    <!-- 채번 -->
+    <select id="maxno" resultType="java.lang.Integer">
+        SELECT IFNULL(MAX(SUBSTR(UIDX, 10, 3)), 0) + 1 
+        FROM USER 
+        WHERE SUBSTR(UIDX, 2, 8) = DATE_FORMAT(NOW(), '%Y%m%d')
+    </select>
+
+    <!-- 회원가입 -->
+    <insert id="insertUser" parameterType="com.kmove.app.User.vo.UserVO">
+        INSERT INTO USER (
+            UIDX, UNAME, UID, UPW, UPHONE, UBIRTH, UPOST, UADDR1, UADDR2, UEMAIL, UPOINT, UDELETEYN, UCREATEDATE, UUPDATEDATE
+        ) VALUES (
+            #{uidx}, #{uname}, #{uid}, #{upw}, #{uphone}, #{ubirth}, #{upost}, #{uaddr1}, #{uaddr2}, #{uemail}, 0, 'Y', NOW(), NOW()
+        )
+    </insert>
+
+    <!-- 회원 상세 조회 -->
+    <select id="selectOne" parameterType="String" resultType="com.kmove.app.User.vo.UserVO">
+        SELECT * 
+        FROM USER 
+        WHERE UIDX = #{uidx}
+    </select>
+
+    <!-- 회원 정보 수정 -->
+    <update id="updateUser" parameterType="com.kmove.app.User.vo.UserVO">
+        UPDATE USER 
+        SET UNAME = #{uname}, UPHONE = #{uphone}, UBIRTH = #{ubirth}, UPOST = #{upost}, 
+            UADDR1 = #{uaddr1}, UADDR2 = #{uaddr2}, UEMAIL = #{uemail}, UUPDATEDATE = NOW() 
+        WHERE UIDX = #{uidx}
+    </update>
+
+    <!-- 회원 탈퇴 -->
+    <update id="deleteUser" parameterType="String">
+        UPDATE USER 
+        SET UDELETEYN = 'N', UUPDATEDATE = NOW() 
+        WHERE UIDX = #{uidx}
+    </update>
+
+    <!-- 전체 회원 조회 -->
+    <select id="userSelectAll" parameterType="com.kmove.app.User.vo.SearchCondition" resultType="com.kmove.app.User.vo.UserVO">
+        SELECT * 
+        FROM USER 
+        WHERE UDELETEYN = 'Y'
+        <include refid="SearchCondition" />
+        ORDER BY UIDX DESC 
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!-- 로그인 체크 -->
+    <select id="idCheck" parameterType="String" resultType="int">
+        SELECT COUNT(*) 
+        FROM USER 
+        WHERE UDELETEYN = 'Y' AND UID = #{uid}
+    </select>
+
+    <!-- 페이징 회원 수 가져오기 -->
+    <select id="userCount" parameterType="com.kmove.app.User.vo.SearchCondition" resultType="int">
+        SELECT COUNT(*) 
+        FROM USER 
+        WHERE UDELETEYN = 'Y'
+        <include refid="SearchCondition" />
+    </select>
+
+    <!-- SearchCondition -->
+    <sql id="SearchCondition">
+        <choose>
+            <when test="option == 'N'">
+                AND UNAME LIKE CONCAT('%', #{keyword}, '%')
+            </when>
+            <when test="option == 'I'">
+                AND UID LIKE CONCAT('%', #{keyword}, '%')
+            </when>
+        </choose>
+    </sql>
+
+    <!-- 아이디 중복 확인 -->
+    <select id="idCheck" parameterType="String" resultType="int">
+        SELECT COUNT(*) 
+        FROM USER 
+        WHERE UID = #{uid}
+    </select>
+</mapper>

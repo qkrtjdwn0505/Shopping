@@ -1,0 +1,61 @@
+<mapper namespace="com.kmove.app.mapper.UserMapper">
+    
+    <!-- 사용자 ID 생성 -->
+    <select id="maxno" resultType="int">
+        SELECT IFNULL(MAX(SUBSTR(UIDX,10,3)),0) + 1 AS MAXNO
+        FROM User 
+        WHERE SUBSTR(UIDX,2,8) = DATE_FORMAT(NOW(),'%Y%m%d')
+    </select>
+    
+    <!-- 회원가입 처리 -->
+    <insert id="UserJoin" parameterType="UserVO">
+        INSERT INTO USER 
+        VALUES ( #{uidx}, #{uid}, #{upw}, #{uname}, #{ubirth}, #{uphone}, #{upost}, #{uadress}, #{uadressd}, #{uemail}, NOW(), NOW(), 'Y', 'U' )
+    </insert>
+
+    <!-- 아이디 중복 확인 -->
+    <select id="IdCheck" resultType="UserVO">
+        SELECT * FROM USER WHERE UDELETEYN = 'Y' AND UID = #{uid}
+    </select>
+
+    <!-- 모든 사용자 조회 -->
+    <select id="userSelectAll" parameterType="UserVO">
+        SELECT UIDX, UID, UNAME, UBIRTH, UPHONE, UPOST, UADRESS, UADRESSD, UEMAIL, UINSERTDATE, UGRADE 
+        FROM USER WHERE UDELETEYN = 'Y'
+    </select>
+
+    <!-- 특정 사용자 조회 -->
+    <select id="selectOne" parameterType="String">
+        SELECT * FROM USER WHERE UIDX = #{udix}
+    </select>
+
+    <!-- 사용자 정보 수정 -->
+    <update id="updateUser" parameterType="UserVO">
+        UPDATE USER 
+        SET UPW = #{upw}, UNAME = #{uname}, UPHONE = #{uphone}, UPOST = #{upost}, 
+            UADRESS = #{uadress}, UADRESSD = #{uadressd}, UEMAIL = #{uemail} 
+        WHERE UIDX = #{uidx}
+    </update>
+
+    <!-- 사용자 삭제 처리 -->
+    <update id="deleteUser" parameterType="String">
+        UPDATE USER 
+        SET UDELETEYN = 'N', UUPDATEDATE = NOW() 
+    </update>
+
+    <!-- 사용자 수 조회 -->
+    <select id="userCount" resultType="java.lang.Integer" parameterType="SearchCondition">
+        SELECT COUNT(*) 
+        FROM USER WHERE UDELETEYN = 'Y'
+    </select>
+
+    <!-- 아이디 찾기 -->
+    <select id="userIdFind" resultType="UserVO">
+        SELECT * FROM USER WHERE UID = #{uid}
+    </select>
+
+    <!-- 비밀번호 찾기 -->
+    <select id="userPwFind" resultType="UserVO">
+        SELECT * FROM USER WHERE UPW = #{upw}
+    </select>
+</mapper>

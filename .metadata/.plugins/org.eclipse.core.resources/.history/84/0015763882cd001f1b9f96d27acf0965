@@ -1,0 +1,25 @@
+package com.kmove.app.User.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import com.kmove.app.User.service.UserService;
+
+@Controller
+public class UserController {
+	
+	@Autowired
+	private UserService userservice;
+	
+	 /*
+     * 메인 페이지로 이동
+     * @return 메인 페이지 뷰 이름
+     */
+    @RequestMapping(value = "/")
+    public String main() {
+        return "index";
+    }
+	
+   
+    
+}

@@ -1,0 +1,5 @@
+package com.kmove.app.User.service;
+
+public class UserServiceImpl {
+
+}

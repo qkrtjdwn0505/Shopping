@@ -109,4 +109,15 @@ public class UserDAOImpl implements UserDAO {
 	    
 	    return uvo;
 	}
+
+	@Override	
+	public String findUserId(String uemail) throws Exception {
+        System.out.println("UserDAO findUserId Start----------------------------------------------------");
+        System.out.println("UserDAO findUserId parameter >>" + uemail);       
+        String uem = session.selectOne(namespace + "findUserId", uemail);          
+        System.out.println("UserDAO findUserId result >>" + uem);
+        System.out.println("UserDAO findUserId End----------------------------------------------------");
+        
+        return uem;
+	}
 }

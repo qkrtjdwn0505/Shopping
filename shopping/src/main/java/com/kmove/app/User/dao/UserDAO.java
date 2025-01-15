@@ -17,5 +17,6 @@ public interface UserDAO {
 	public String userUidx(String uid) throws Exception; //유저 채번								
 	public String maxno() throws Exception;
 	public UserVO loginCheck(String uid)throws Exception;
+	public String findUserId(String uemail)throws Exception;
 	
 }

@@ -59,6 +59,10 @@ let msg = '${param.msg}';
                 element.focus();
             }
         }
+        
     </script>
+	<!-- 아이디 찾기 버튼 -->
+    <div class="button"><a href="/user/findId">아이디 찾기</a></div>
+ 
 </body>
 </html>

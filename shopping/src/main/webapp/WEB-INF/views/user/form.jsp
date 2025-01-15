@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="/resources/javaScript/userForm.js"></script>
+<script defer src="/resources/javaScript/userForm.js"></script>
 <script>
    let msg = "${msg}";
    if(msg == "UPDATE_ERROR"){

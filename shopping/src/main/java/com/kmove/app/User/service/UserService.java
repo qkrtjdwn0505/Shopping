@@ -2,6 +2,8 @@ package com.kmove.app.User.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.kmove.app.User.vo.SearchCondition;
 import com.kmove.app.User.vo.UserVO;
 
@@ -17,5 +19,6 @@ public interface UserService {
 	public String userUidx(String uid) throws Exception; //유저 채번	
 	public String maxno() throws Exception;
 	public UserVO loginCheck(String uid) throws Exception;
+	public String findUserId(HttpServletResponse response, String uemail) throws Exception;
 
 }

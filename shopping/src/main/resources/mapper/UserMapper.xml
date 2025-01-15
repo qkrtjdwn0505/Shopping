@@ -106,5 +106,12 @@
 		AND UID = #{uid};
 	</select>
 	
+	<!-- 아이디 찾기 -->
+	<select id="findUserId" parameterType="String" resultType="String">
+	    SELECT UID 
+	    FROM USER 
+	    WHERE UEMAIL = #{uemail}
+	</select>
+	
 	
 </mapper>

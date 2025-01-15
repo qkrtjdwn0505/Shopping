@@ -17,7 +17,7 @@ import com.kmove.app.User.vo.SearchCondition;
 import com.kmove.app.User.vo.UserVO;
 
 /**
- * »ç¿ëÀÚ °ü¸®¸¦ À§ÇÑ ÄÁÆ®·Ñ·¯ Å¬·¡½º
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
  */
 @Controller
 public class UserController {
@@ -26,8 +26,8 @@ public class UserController {
     private UserService userservice;
     
     /**
-     * ¸ÞÀÎ ÆäÀÌÁö·Î ÀÌµ¿
-     * @return ¸ÞÀÎ ÆäÀÌÁö ºä ÀÌ¸§
+     * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+     * @return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½
      */
     @RequestMapping(value = "/")
     public String main() {
@@ -35,30 +35,30 @@ public class UserController {
     }
     
     /**
-     * È¸¿ø °¡ÀÔ/¼öÁ¤ ÆûÀ» º¸¿©ÁÖ´Â ¸Þ¼­µå
-     * ·Î±×ÀÎµÈ »ç¿ëÀÚÀÇ °æ¿ì ±âÁ¸ Á¤º¸¸¦ Æû¿¡ Ç¥½Ã
-     * @param session HTTP ¼¼¼Ç
-     * @param model Spring Model °´Ã¼
-     * @return È¸¿ø Æû ºä ÀÌ¸§
+     * È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+     * ï¿½Î±ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
+     * @param session HTTP ï¿½ï¿½ï¿½ï¿½
+     * @param model Spring Model ï¿½ï¿½Ã¼
+     * @return È¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½
      */
     
-    //È¸¿ø°¡ÀÔ
+    //È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     @RequestMapping(value = "/form")
     public String insertUser(HttpSession session, Model model) throws Exception {
         System.out.println("UserController userform Start----------------------------------------------------");
         
-        // ¼¼¼Ç¿¡¼­ »ç¿ëÀÚ ID °¡Á®¿À±â
+        // ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ID ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         String uidx = (String)session.getAttribute("uidx");
         System.out.println(uidx);
         
-        // »ç¿ëÀÚ Á¤º¸ Á¶È¸
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
         UserVO uvo = null;
-        if(uidx != null) { // ·Î±×ÀÎµÈ »ç¿ëÀÚÀÎ °æ¿ì
+        if(uidx != null) { // ï¿½Î±ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             uvo = userservice.selectOne(uidx);
             System.out.println(uvo);
         }
         
-        // ¸ðµ¨¿¡ »ç¿ëÀÚ Á¤º¸ Ãß°¡
+        // ï¿½ðµ¨¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
         model.addAttribute("uvo", uvo);
         
         System.out.println("UserController userform End----------------------------------------------------");
@@ -66,13 +66,13 @@ public class UserController {
     }
     
     /**
-     * È¸¿ø °¡ÀÔ Ã³¸®
-     * @param uvo »ç¿ëÀÚ Á¤º¸ °´Ã¼
-     * @param rattr ¸®´ÙÀÌ·ºÆ® ¼Ó¼º
-     * @return ¸®´ÙÀÌ·ºÆ® °æ·Î
+     * È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+     * @param uvo ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
+     * @param rattr ï¿½ï¿½ï¿½ï¿½ï¿½Ì·ï¿½Æ® ï¿½Ó¼ï¿½
+     * @return ï¿½ï¿½ï¿½ï¿½ï¿½Ì·ï¿½Æ® ï¿½ï¿½ï¿½
      */
     
-    //·Î±×ÀÎ ¿Ï·á
+    //ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
     @PostMapping(value = "/user/join")
     public String userJoin(@ModelAttribute UserVO uvo, RedirectAttributes rattr) throws Exception {
         System.out.println("UserController userJoin() -------------------------------");
@@ -105,7 +105,7 @@ public class UserController {
         return "";
     }
     
-    //¾ÆÀÌµð Áßº¹ Ã¼Å©    
+    //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½ Ã¼Å©    
     @PostMapping(value="user/id")
    @ResponseBody
    public String idCheck(@RequestParam String uid) throws Exception {
@@ -116,7 +116,7 @@ public class UserController {
       
    }
     
-    //È¸¿ø ¼öÁ¤
+    //È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     @PostMapping(value="/user/update")
     public String updateUser(@ModelAttribute UserVO user, RedirectAttributes rattr) throws Exception{
        System.out.println("UserController updateUser Start----------");
@@ -136,7 +136,7 @@ public class UserController {
        }
     }
     
-    //ÀüÃ¼ È¸¿ø Á¶È¸(°ü¸®ÀÚ)
+    //ï¿½ï¿½Ã¼ È¸ï¿½ï¿½ ï¿½ï¿½È¸(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
     @GetMapping(value="/user/list")
     public String selectAll(@RequestParam(defaultValue = "1") int page,@ModelAttribute SearchCondition sc,HttpSession session,RedirectAttributes rattr, Model model)throws Exception{
        System.out.println("UserController selectAll Start-----------");
@@ -165,22 +165,22 @@ public class UserController {
       }
     }
     
-    //È¸¿ø Å»Åð
+    //È¸ï¿½ï¿½ Å»ï¿½ï¿½
     @GetMapping(value="/user/delete")
     public String deleteUser(HttpSession session, RedirectAttributes rattr) throws Exception {
         System.out.println("UserController deleteUser Start----------------------------------------------------");    
-        // ¼¼¼Ç¿¡¼­ »ç¿ëÀÚ °íÀ¯¹øÈ£ Á¶È¸
+        // ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ ï¿½ï¿½È¸
         String uidx = (String)session.getAttribute("uidx");
         System.out.println("UserController deleteUser uidx >>" + uidx);
         
         String msg = "";
         
-        // ·Î±×ÀÎ »óÅÂÀÎ °æ¿ì¿¡¸¸ »èÁ¦ Ã³¸®
+        // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
         if(uidx != null) {
             int res = userservice.deleteUser(uidx);
             System.out.println("UserController deleteUser res >>" + res);
             
-            // »èÁ¦ °á°ú¿¡ µû¸¥ ¸Þ½ÃÁö ¼³Á¤
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if(res == 1) {
                 msg = "DELETE SUCCESS";
             } else {
@@ -190,7 +190,7 @@ public class UserController {
             msg ="DELETE ERROR";
         }
         
-        // Ã³¸® °á°ú ¸Þ½ÃÁö¸¦ ¸®´ÙÀÌ·ºÆ® ½Ã Àü´Þ
+        // Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì·ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         rattr.addFlashAttribute("msg", msg);
         
         session.invalidate();
@@ -200,12 +200,12 @@ public class UserController {
         return "redirect:/";
     }
     
-  //¾ÆÀÌµð Ã£±â
+  //ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
     
- // ¾ÆÀÌµð Ã£±â ÆäÀÌÁö º¸¿©ÁÖ±â
+ // ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
     @RequestMapping(value = "/user/findId", method = RequestMethod.GET)
     public String findIdForm() {
-        return "user/findId";  // WEB-INF/views/ ´Â prefix·Î ÀÚµ¿ Ãß°¡µÊ
+        return "user/findId";  // WEB-INF/views/ ï¿½ï¿½ prefixï¿½ï¿½ ï¿½Úµï¿½ ï¿½ß°ï¿½ï¿½ï¿½
     }
     
     @RequestMapping(value = "/user/findId", method = RequestMethod.POST)
@@ -213,20 +213,20 @@ public class UserController {
                             @RequestParam("uemail") String uemail, 
                             Model model) throws Exception {
         try {
-            System.out.println("ÀÔ·ÂµÈ ÀÌ¸ÞÀÏ: " + uemail);
+            System.out.println("ï¿½Ô·Âµï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½: " + uemail);
             String foundId = userservice.findUserId(response, uemail);
-            System.out.println("Ã£Àº ¾ÆÀÌµð: " + foundId);
+            System.out.println("Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½: " + foundId);
             
             if (foundId != null) {
                 model.addAttribute("id", foundId);
-                System.out.println("¾ÆÀÌµð¸¦ Ã£¾Ò½À´Ï´Ù: " + foundId);
+                System.out.println("ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½Ò½ï¿½ï¿½Ï´ï¿½: " + foundId);
             } else {
-                System.out.println("¾ÆÀÌµð¸¦ Ã£Áö ¸øÇß½À´Ï´Ù.");
+                System.out.println("ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
             }
             return "user/findId";
         } catch (Exception e) {
-            System.out.println("¾ÆÀÌµð Ã£±â ¿¡·¯: " + e.getMessage());
-            e.printStackTrace(); // »ó¼¼ÇÑ ¿¡·¯ ·Î±×
+            System.out.println("ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " + e.getMessage());
+            e.printStackTrace(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½
             return "redirect:/user/findId";
         }
     }

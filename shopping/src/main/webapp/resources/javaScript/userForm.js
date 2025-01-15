@@ -102,3 +102,6 @@ function deleteUser(){
    document.userForm.action = '/user/delete';
    document.userForm.submit();
 }
+
+
+//야옹

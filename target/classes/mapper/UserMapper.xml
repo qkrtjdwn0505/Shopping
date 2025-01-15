@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kmove.app.mapper.UserMapper">
+    <select id="maxno" resultType="int"> 
+        SELECT IFNULL(MAX(SUBSTR(UIDX,10,3)),0) + 1 AS MAXNO 
+        FROM USER
+        WHERE SUBSTR(UIDX,2,8) = DATE_FORMAT(NOW(),'%Y%m%d') 
+    </select>
+
+	<insert id="selectInsert" parameterType="UserVO">
+	    INSERT INTO USER 
+	    (UIDX, UID, UPW, UNAME, UBIRTH, UPHONE, UPOST, UADDRESS, UADDRESSD, UEMAIL, UINSERTDATE, UUPDATEDATE, UDELETEYN, UGRADE)
+	    VALUES (
+	        #{uidx},
+	        #{uid},
+	        #{upw},
+	        #{uname},
+	        #{ubirth},
+	        #{uphone},
+	        #{upost},
+	        #{uaddress},
+	        #{uaddressd},  
+	        #{uemail},
+	        NOW(),          <!-- UINSERTDATE: 현재 시간 -->
+	        NOW(),          <!-- UUPDATEDATE: 현재 시간 -->
+	        'Y',            <!-- 삭제 여부 기본값 -->
+	        'U'             <!-- 기본 등급 -->
+	    )
+	</insert>
+
+
+    <select id="idCheck" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) 
+        FROM USER
+        WHERE UDELETEYN = 'Y' 
+        AND UID = #{uid}
+    </select>
+
+    <select id="userSelectAll" parameterType="UserVO">
+        SELECT 
+            UIDX, 
+            UID, 
+            UNAME, 
+            UBIRTH, 
+            UPHONE,
+            UPOST,
+            UADDRESS, 
+            UADDRESSD, 
+            UEMAIL, 
+            UINSERTDATE,
+            UGRADE 
+        FROM USER        
+        WHERE UDELETEYN = 'Y'
+    </select>
+
+	<select id="selectOne" parameterType="String" resultType="com.kmove.app.User.vo.UserVO">
+	    SELECT * 
+	    FROM USER
+	    WHERE UIDX = #{uidx}
+	</select>
+
+ 	<update id="updateUser" parameterType="UserVO">
+        UPDATE USER
+        SET UNAME = #{uname},
+            UBIRTH = #{ubirth}, 
+            UPHONE = #{uphone}, 
+            UPOST = #{upost}, 
+            UADDRESS = #{uaddress}, 
+            UADDRESSD = #{uaddressd},  
+            UEMAIL = #{uemail}
+        WHERE UIDX = #{uidx}
+    </update>
+
+    <update id="deleteUser" parameterType="String">
+        UPDATE USER
+        SET UDELETEYN = 'N',
+            UUPDATEDATE = NOW()
+        WHERE UIDX = #{uidx}
+    </update>
+
+    <select id="userCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) 
+        FROM USER
+        WHERE UDELETEYN = 'Y'
+    </select>
+
+    <select id="userIdFind" resultType="UserVO">
+        SELECT * 
+        FROM USER
+        WHERE UID = #{uid}
+    </select>
+
+    <select id="userPwFind" resultType="UserVO">
+        SELECT * 
+        FROM USER
+        WHERE UPW = #{upw}
+    </select>
+    
+    	<!-- 로그인 체크 -->
+	<select id="loginCheck" parameterType="String" resultType="UserVO">
+		SELECT  *
+		FROM USER
+		WHERE UDELETEYN = 'Y'	
+		AND UID = #{uid};
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findUserId" parameterType="String" resultType="String">
+	    SELECT UID 
+	    FROM USER 
+	    WHERE UEMAIL = #{uemail}
+	</select>
+	
+	
+</mapper>
